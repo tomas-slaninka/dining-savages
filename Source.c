@@ -32,15 +32,16 @@ int savage(void *inputData) {
 	assert(sem_post(data.dataCopied) == 0);
 	
 	while(1) {
-    usleep(rand() % 1000);
+  	usleep(rand() % 1000);
 		assert(sem_wait(data.mutex) == 0);
 		
 		if (data.servings == 0){
 			assert(sem_post(data.emptyPot) == 0);
-      assert(sem_wait(data.fullPot) == 0);
+			assert(sem_wait(data.fullPot) == 0);
 		}
-    printf("Savage is eating...\n");
-    data.servings -= 1;
+		
+  		printf("Savage is eating...\n");
+  		data.servings -= 1;
 		
 		assert(sem_post(data.mutex) == 0);
 		  
