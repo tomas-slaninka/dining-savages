@@ -70,11 +70,11 @@ int main() {
 	assert(pthread_create(&id[0], NULL, cook, (void*)&data) == 0);
 	assert(sem_wait(&dataCopied) == 0);
 
-  for (i = 1; i < 5; i++){
-    assert(pthread_create(&id[1], NULL, savage, (void*)&data) == 0);
-    assert(sem_wait(&dataCopied) == 0);
-  
-  }
+	for (i = 1; i < 5; i++){
+		assert(pthread_create(&id[i], NULL, savage, (void*)&data) == 0);
+		assert(sem_wait(&dataCopied) == 0);
+	
+	}
 
 	for (i = 0; i < 5; i++) {
 		assert(pthread_join(id[i], NULL) == 0);
